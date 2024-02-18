@@ -46,12 +46,8 @@ func _input(event):
 
     var is_space_free= true
 
-    var cursor_bottom = cursor.position + Vector2(16, 16)
     for child in get_children():
-      var child_bottom = child.position + Vector2(16, 16)
-      if (cursor.position.x < child_bottom.x && cursor_bottom.x > child.position.x &&
-        cursor.position.y < child_bottom.y && cursor_bottom.y > child.position.y
-        && child != cursor):
+      if (child != cursor && is_collision(cursor.position, child.position)):
         is_space_free = false
 
     if !is_space_free:
@@ -61,13 +57,8 @@ func _input(event):
     
     add_child(obstacle)
 
-  
-
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-  
   cursor.position = get_global_mouse_position()
   cursor.position.x = cursor.position.x - fmod(cursor.position.x, 16 * scale.x) 
   cursor.position.y = cursor.position.y - fmod(cursor.position.y, 16 * scale.x) 
@@ -84,22 +75,20 @@ func _process(_delta):
 
   var is_space_free = true
 
-  
-  var cursor_bottom = cursor.position + Vector2(16, 16)
   for child in get_children():
-    var child_bottom = child.position + Vector2(16, 16)
-    if (cursor.position.x < child_bottom.x && cursor_bottom.x > child.position.x &&
-      cursor.position.y < child_bottom.y && cursor_bottom.y > child.position.y
-      && child != cursor):
+    if (child != cursor && is_collision(cursor.position, child.position)):
       is_space_free = false
-
-  
 
   if is_space_free:
     cursor.get_node("Sprite").modulate.a = 1.0
   else:
     cursor.get_node("Sprite").modulate.a = 0.5
+pass
 
+func is_collision(v1: Vector2, v2: Vector2):
+  var v1_bottom = v1 + Vector2(15, 15)
+  var v2_bottom = v2 + Vector2(16, 16)
+  return (v1.x + 1 < v2_bottom.x && v1_bottom.x > v2.x &&
+    v1.y + 1 < v2_bottom.y && v1_bottom.y > v2.y)
 
-
-  pass
+  
