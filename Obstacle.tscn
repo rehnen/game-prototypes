@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://osctqmieiyd0"]
+
+[ext_resource type="Texture2D" uid="uid://cm01a2w1dvrbn" path="res://icon.svg" id="1_a81sq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7ho2"]
+size = Vector2(16, 16)
+
+[node name="Obstacle" type="StaticBody2D"]
+metadata/_edit_horizontal_guides_ = [-32.0]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_a81sq")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p7ho2")

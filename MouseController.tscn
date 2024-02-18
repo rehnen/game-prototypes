@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://sc5nk50r37ph"]
+
+[sub_resource type="GDScript" id="GDScript_widq7"]
+script/source = "extends Node2D
+# Called when the node enters the scene tree for the first time.
+func _ready():
+  var icon = load(\"res://Slime 01.png\")
+  icon.glob
+  Input.set_custom_mouse_cursor(icon)
+  pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+  pass
+"
+
+[node name="MouseController" type="Node2D"]
+script = SubResource("GDScript_widq7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
