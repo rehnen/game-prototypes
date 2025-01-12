@@ -163,3 +163,9 @@ shape = SubResource("CapsuleShape2D_fv3nt")
 position = Vector2(0, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qb3ge")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
