@@ -50,3 +50,7 @@ func _physics_process(delta):
   velocity += velocity * delta
   animate()
   move_and_slide()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+  print_debug(area)

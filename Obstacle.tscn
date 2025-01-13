@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://osctqmieiyd0"]
+[gd_scene load_steps=4 format=3 uid="uid://osctqmieiyd0"]
 
 [ext_resource type="Texture2D" uid="uid://cm01a2w1dvrbn" path="res://icon.svg" id="1_a81sq"]
+[ext_resource type="Script" path="res://obstacle.gd" id="1_w0vn6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7ho2"]
 size = Vector2(16, 16)
 
 [node name="Obstacle" type="StaticBody2D"]
+script = ExtResource("1_w0vn6")
+hp = 31
 metadata/_edit_horizontal_guides_ = [-32.0]
 
 [node name="Sprite" type="Sprite2D" parent="."]

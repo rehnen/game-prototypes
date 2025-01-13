@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var player = get_parent().get_node("Player")
 
 var normalized_direction: Vector2 = Vector2.ZERO;
+var is_able_to_attack: bool = true
 
 func _init():
   var position_jitter = Vector2(randi_range(-300, 300), randi_range(-300, 300))
@@ -40,4 +41,17 @@ func _physics_process(delta):
   velocity = movement_direction
   velocity = velocity.normalized() * 50
   velocity += velocity * delta
+
   move_and_slide()
+  for i in get_slide_collision_count():
+    var collision = get_slide_collision(i)
+    if collision.get_collider().has_method("hit") && is_able_to_attack:
+      is_able_to_attack = false
+      collision.get_collider().hit(1)
+      $AttackCooldown.start(1)
+      break
+
+
+func _on_attack_cooldown_timeout() -> void:
+  print_debug("timer")
+  is_able_to_attack = true
