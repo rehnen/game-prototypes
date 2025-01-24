@@ -42,8 +42,6 @@ func animate():
   if direction == Vector2.RIGHT:
       sprite.play("walking_right")
 
-
-
 func _physics_process(delta):
   input_to_direction()
   velocity = velocity.normalized() * 100
@@ -51,6 +49,6 @@ func _physics_process(delta):
   animate()
   move_and_slide()
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-  print_debug(area)
+func _on_health_health_depleted(node: Node2D) -> void:
+  print_debug("Player should die")
+  pass # Replace with function body.

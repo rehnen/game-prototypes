@@ -43,6 +43,7 @@ func _physics_process(delta):
   velocity += velocity * delta
 
   move_and_slide()
+  # mutate and kill enemies
   for i in get_slide_collision_count():
     var collision = get_slide_collision(i)
     if collision.get_collider().has_method("hit") && is_able_to_attack:
@@ -55,3 +56,8 @@ func _physics_process(delta):
 func _on_attack_cooldown_timeout() -> void:
   print_debug("timer")
   is_able_to_attack = true
+
+
+func _on_health_depleted(node: Node2D) -> void:
+  self.queue_free()
+  pass # Replace with function body.

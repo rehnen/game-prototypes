@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vjkh5e3dnole"]
+
+[ext_resource type="Script" path="res://components/health/health.gd" id="1_tkgyn"]
+
+[node name="Health" type="Node2D"]
+script = ExtResource("1_tkgyn")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

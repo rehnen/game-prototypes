@@ -51,6 +51,17 @@ left_click={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="player"
+2d_render/layer_2="enemy"
+2d_physics/layer_1="player"
+2d_navigation/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_navigation/layer_2="enemy"
+2d_navigation/layer_3="immutable"
+2d_navigation/layer_4="obstacle"
+
 [physics]
 
 2d/physics_engine="GodotPhysics2D"

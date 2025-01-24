@@ -1,7 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://bu7c5384wsvvb"]
+[gd_scene load_steps=40 format=3 uid="uid://bu7c5384wsvvb"]
 
 [ext_resource type="Texture2D" uid="uid://cdh65ka6wvdkm" path="res://Hero 01.png" id="1_6xkth"]
 [ext_resource type="Script" path="res://scripts/player_script.gd" id="1_id33s"]
+[ext_resource type="PackedScene" uid="uid://vjkh5e3dnole" path="res://components/health/health.tscn" id="3_r6fmx"]
+[ext_resource type="PackedScene" uid="uid://bk0d2osbxuvwi" path="res://components/hitbox/hitbox.tscn" id="4_mmjf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_prr1k"]
 atlas = ExtResource("1_6xkth")
@@ -274,7 +276,12 @@ animations = [{
 radius = 6.0
 height = 16.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jtmqy"]
+radius = 7.0
+height = 20.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 14
 script = ExtResource("1_id33s")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -284,3 +291,15 @@ animation = &"walking_up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_rgrkd")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_mmjf3")]
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_jtmqy")
+
+[node name="Health" parent="." instance=ExtResource("3_r6fmx")]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

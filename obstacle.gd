@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 func hit(attack_power)-> void:
   current_hp -= attack_power
   $Sprite.modulate.a = float(current_hp) / float(hp)
-  print_debug("current hp", current_hp)
   if current_hp <= 0:
     self.queue_free()
   
